@@ -1,0 +1,30 @@
+{
+  "name": "hash-api-simple",
+  "version": "1.0.0",
+  "description": "an api that can be used to perform simple one-way hashing",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremigendron/hash-api-simple.git"
+  },
+  "keywords": [
+    "hash",
+    "api",
+    "simple",
+    "cryptography",
+    "free"
+  ],
+  "author": "jeremi gendron",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/jeremigendron/hash-api-simple/issues"
+  },
+  "homepage": "https://github.com/jeremigendron/hash-api-simple#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "sha256": "^0.2.0"
+  }
+}

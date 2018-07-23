@@ -1,0 +1,92 @@
+<html><head>
+	<style>
+		#contentWrapper {
+			position: absolute
+			padding: 20px;
+			border-radius: 12px;
+			width: 50%;
+			bottom: 0;
+			margin-left: 25%;
+			margin-right: 25%;
+			background-color: aliceblue;
+			text-align: center
+		}
+		#inputSelector {
+			width: 50%;
+			margin-top: 17px;
+			margin-bottom: 16px
+		}		
+		#submitSelector {
+			background-color: violet;
+			font-size: 22px;
+			width: 20%;
+			margin-top: 14px;
+			padding-top: 7px;
+			padding-bottom: 7px;
+			border-radius: 7px
+		}
+		#resultSelector {
+			background-color: lightgray;
+			font-size: 14px;
+			margin-right: 20px;
+			margin-left: 20px;
+			margin-top: 20px;
+			font-family: monospace;
+			overflow: auto
+		}
+		#parserSelector {
+			border: none;
+			background-color: aliceblue;
+			color: aliceblue
+		}
+		#iframeSelector {
+			margin-left: 27px;
+			margin-right: 27px;
+			height: 500px
+		}
+	</style>
+</head><body>
+	<div id="contentWrapper">
+	<input type="text" id="inputSelector"/>
+	<hr><br>
+	<a id="submitlinkSelector"><button id="submitSelector">hash</button></a>
+	<br><br>
+	<p id="resultSelector"></p>
+	<hr><br>
+	<a id="copylinkSelector"><img id="copySelector" width="16px" height="16px" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Clipboard.png"/></a>
+	<br>
+	<input id="parserSelector"/>
+	<hr><br>
+	<iframe id="iframeSelector" src="README.html"></iframe>
+	</div>
+<script>
+	var linkSelector = document.getElementById('linkSelector');
+	var resultSelector = document.getElementById('resultSelector');
+	var submitlinkSelector = document.getElementById('submitlinkSelector');
+	var inputSelector = document.getElementById('inputSelector');
+	var copylinkSelector = document.getElementById('copylinkSelector');
+	var parserSelector = document.getElementById('parserSelector');	
+
+	submitlinkSelector.href = "javascript:submit()";
+	function submit(){
+		var data = inputSelector.value;
+		var http = new XMLHttpRequest();
+		
+		http.open('POST', '/api/'+data, true)
+		http.setRequestHeader('Content-type', 'text');
+		http.onreadystatechange = function(){
+			if(http.readyState == 4 && http.status == 200) resultSelector.innerHTML = http.responseText;
+		}
+		http.send()
+	}
+
+	copylinkSelector.href = "javascript:copy()"
+	var copy = function(){
+		parserSelector.style.display = "block";
+		parserSelector.value = resultSelector.innerHTML;
+		parserSelector.select();
+		document.execCommand('copy');
+		parserSelector.style.display = "none"
+	}
+</script>
+</body></html>
